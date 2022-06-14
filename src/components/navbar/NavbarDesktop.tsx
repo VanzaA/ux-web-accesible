@@ -1,10 +1,11 @@
 import { Item } from "./Navbar";
+import { Link } from "react-router-dom";
 
 const NavItem = ({ text, imgSrc, linkTo }: Item) => (
   <>
-    <a href={linkTo}>
+    <Link to={linkTo}>
       <img src={imgSrc} alt="" /> <span>{text}</span>
-    </a>
+    </Link>
   </>
 );
 

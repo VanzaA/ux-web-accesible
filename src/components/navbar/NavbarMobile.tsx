@@ -3,6 +3,7 @@ import cn from "classnames";
 import { Item } from "./Navbar";
 import Menu from "../../assets/burger-menu.svg";
 import Close from "../../assets/close.svg";
+import { Link } from "react-router-dom";
 
 type NavbarMobileProps = {
   items: Item[];
@@ -12,9 +13,9 @@ type ListProps = NavbarMobileProps;
 
 const DrawerItem = ({ imgSrc, linkTo, text }: Item) => (
   <>
-    <a href={linkTo}>
+    <Link to={linkTo}>
       <img src={imgSrc} alt="" /> <span>{text}</span>
-    </a>
+    </Link>
   </>
 );
 
