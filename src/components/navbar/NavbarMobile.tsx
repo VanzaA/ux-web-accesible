@@ -1,0 +1,104 @@
+import { useRef, useEffect, useState } from "react";
+import cn from "classnames";
+import { Item } from "./Navbar";
+import Menu from "../../assets/burger-menu.svg";
+import Close from "../../assets/close.svg";
+
+type NavbarMobileProps = {
+  items: Item[];
+};
+
+type ListProps = NavbarMobileProps;
+
+const DrawerItem = ({ imgSrc, linkTo, text }: Item) => (
+  <>
+    <a href={linkTo}>
+      <img src={imgSrc} alt="" /> <span>{text}</span>
+    </a>
+  </>
+);
+
+const DrawerList = ({ items }: ListProps) => (
+  <>
+    {items.map((item) => (
+      <DrawerItem key={`drawer_item_${item.text}`} {...item} />
+    ))}
+  </>
+);
+
+type DrawerProps = {
+  open: boolean;
+  children: JSX.Element | JSX.Element[];
+  className?: string;
+  onClose: () => void;
+};
+
+const Drawer = ({ open, children, className, onClose }: DrawerProps) => {
+  const position = "left";
+  const bodyRef = useRef(document.querySelector("body"));
+
+  useEffect(() => {
+    const updatePageScroll = () => {
+      if (open) {
+        bodyRef.current!.style.overflow = "hidden";
+      } else {
+        bodyRef.current!.style.overflow = "";
+      }
+    };
+    updatePageScroll();
+  }, [open]);
+
+  useEffect(() => {
+    const onKeyPress = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        onClose();
+      }
+    };
+
+    if (open) {
+      window.addEventListener("keyup", onKeyPress);
+    }
+
+    return () => {
+      window.removeEventListener("keyup", onKeyPress);
+    };
+  }, [open, onClose]);
+
+  return (
+    <div
+      aria-hidden={open ? "false" : "true"}
+      className={cn("drawer-container", {
+        open: open,
+        className,
+      })}
+    >
+      <div className={cn("drawer", position)} role="dialog">
+        {children}
+      </div>
+      <div className="backdrop" onClick={onClose} />
+    </div>
+  );
+};
+
+const NavbarMobile = ({ items }: NavbarMobileProps) => {
+  const [open, setOpen] = useState(false);
+
+  const openDrawer = () => setOpen(true);
+  const closeDrawer = () => setOpen(false);
+
+  return (
+    <nav className="navbar-mobile">
+      <button type="button" onClick={openDrawer}>
+        <img src={Menu} alt="Menu hamburguesa" />
+      </button>
+      <Drawer open={open} onClose={closeDrawer}>
+        <DrawerList items={items} />
+        <button type="button" onClick={closeDrawer}>
+          <img src={Close} alt="Cerrar" />
+        </button>
+      </Drawer>
+    </nav>
+  );
+};
+
+export default NavbarMobile;

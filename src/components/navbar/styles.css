@@ -1,0 +1,135 @@
+nav a {
+  text-decoration: none;
+  color: #293a5c;
+  font-weight: 600;
+}
+
+@media (max-width: 1200px) {
+  .navbar-desktop {
+    display: none;
+  }
+
+  .navbar-mobile {
+    width: 100vw;
+    display: flex;
+  }
+
+  .navbar-mobile > button {
+    margin-top: 25px;
+    margin-left: 25px;
+    width: 40px;
+    height: 40px;
+  }
+
+  .drawer-container {
+    --transition-speed: 0.3s;
+  }
+
+  .drawer {
+    background: #fff;
+    width: 250px;
+    height: 100%;
+    overflow: auto;
+    position: fixed;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    transition: transform var(--transition-speed) ease;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .drawer.left {
+    top: 0;
+    left: 0;
+    transform: translateX(-100%);
+  }
+
+  .drawer-container.open .left {
+    transform: translateX(0);
+  }
+
+  .backdrop {
+    visibility: hidden;
+    opacity: 0;
+    background: rgba(0, 0, 0, 0.5);
+    transition: opacity var(--transition-speed) ease,
+      visibility var(--transition-speed) ease;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    position: fixed;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /*
+    Only apply the box-shadow when open to prevent the shadow
+    from appearing on the edge of the screen when inactive
+   */
+  .drawer-container.open .drawer {
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+  }
+
+  .drawer-container.open .backdrop {
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+    z-index: 999;
+  }
+
+  .drawer a {
+    width: 100%;
+    margin-top: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid black;
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .drawer a img {
+    padding: 0 20px;
+    width: 20%;
+    height: 30px;
+  }
+
+  .drawer a span {
+    width: 80%;
+  }
+
+  .drawer button {
+    margin-top: auto;
+    margin-bottom: 30px;
+    border-radius: 10px;
+    background: #39daaa;
+  }
+}
+
+@media (min-width: 1200px) {
+  .navbar-mobile {
+    display: none;
+  }
+
+  .navbar-desktop {
+    margin-top: 25px;
+    width: 100vw;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .navbar-desktop a {
+    margin-right: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .navbar-desktop a img {
+    margin-right: 5px;
+  }
+
+  .navbar-desktop a:last-child {
+    margin-right: 5vw;
+  }
+}
