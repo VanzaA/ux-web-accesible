@@ -19,23 +19,3 @@ footer {
   height: 2vh;
   background-color: white;
 }
-
-nav {
-  width: 100vw;
-  display: flex;
-  justify-content: flex-end;
-}
-
-nav a {
-  text-decoration: none;
-  margin-right: 15px;
-  color: #293a5c;
-  font-weight: 600;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-nav a img {
-  margin-right: 5px;
-}

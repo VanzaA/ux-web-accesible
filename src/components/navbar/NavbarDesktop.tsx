@@ -1,13 +1,9 @@
-type Item = {
-  text: string;
-  linkTo: string;
-  imgSrc: string;
-};
+import { Item } from "./Navbar";
 
 const NavItem = ({ text, imgSrc, linkTo }: Item) => (
   <>
     <a href={linkTo}>
-      <img src={imgSrc} alt="imagen decorativa" /> <span>{text}</span>
+      <img src={imgSrc} alt="" /> <span>{text}</span>
     </a>
   </>
 );
@@ -19,7 +15,7 @@ type NavbarDesktopProps = {
 const NavbarDesktop = ({ items }: NavbarDesktopProps) => (
   <nav className="navbar-desktop">
     {items.map((item) => (
-      <NavItem imgSrc={item.imgSrc} text={item.text} linkTo={item.linkTo} />
+      <NavItem key={`navbar_item_${item.text}`} {...item} />
     ))}
   </nav>
 );
