@@ -1,0 +1,36 @@
+@media (max-width: 1200px) {
+  .navbar-desktop {
+    display: none;
+  }
+}
+
+@media (min-width: 1200px) {
+  .navbar-mobile {
+    display: none;
+  }
+
+  .navbar-desktop {
+    margin-top: 15px;
+    width: 100vw;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .navbar-desktop a {
+    text-decoration: none;
+    margin-right: 15px;
+    color: #293a5c;
+    font-weight: 600;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .navbar-desktop a img {
+    margin-right: 5px;
+  }
+
+  .navbar-desktop a:last-child {
+    margin-right: 5vw;
+  }
+}
