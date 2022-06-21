@@ -3,6 +3,7 @@ import cn from "classnames";
 import { Item } from "./Navbar";
 import Menu from "../../assets/burger-menu.svg";
 import Close from "../../assets/close.svg";
+import { Link } from "react-router-dom";
 
 type NavbarMobileProps = {
   items: Item[];
@@ -10,11 +11,16 @@ type NavbarMobileProps = {
 
 type ListProps = NavbarMobileProps;
 
-const DrawerItem = ({ imgSrc, linkTo, text }: Item) => (
+const DrawerItem = ({ imgSrc, linkTo, text, selected }: Item) => (
   <>
-    <a href={linkTo}>
-      <img src={imgSrc} alt="" /> <span>{text}</span>
-    </a>
+    <Link
+      to={linkTo}
+      className={cn({
+        selected,
+      })}
+    >
+      {imgSrc} <span>{text}</span>
+    </Link>
   </>
 );
 
