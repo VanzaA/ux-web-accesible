@@ -1,0 +1,18 @@
+.btn {
+  background-color: #2c6423;
+  color: #ffffff;
+  width: 250px;
+  padding: 20px 0;
+}
+
+.btn a {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+@media (max-width: 1200px) {
+  .btn {
+    width: 80vw;
+    max-width: 350px;
+  }
+}
