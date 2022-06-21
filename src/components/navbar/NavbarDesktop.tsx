@@ -1,10 +1,16 @@
 import { Item } from "./Navbar";
 import { Link } from "react-router-dom";
+import cn from "classnames";
 
-const NavItem = ({ text, imgSrc, linkTo }: Item) => (
+const NavItem = ({ text, imgSrc, linkTo, selected }: Item) => (
   <>
-    <Link to={linkTo}>
-      <img src={imgSrc} alt="" /> <span>{text}</span>
+    <Link
+      to={linkTo}
+      className={cn({
+        selected,
+      })}
+    >
+      {imgSrc} <span>{text}</span>
     </Link>
   </>
 );

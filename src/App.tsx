@@ -6,6 +6,7 @@ const Info = () => <h1>Info</h1>;
 const List = () => <h1>List</h1>;
 const Submit = () => <h1>Submit</h1>;
 const About = () => <h1>About</h1>;
+const Profile = () => <h1>My Profile</h1>;
 
 const App = () => (
   <>
@@ -16,6 +17,7 @@ const App = () => (
         <Route element={<List />} path="list" />
         <Route element={<Submit />} path="submit" />
         <Route element={<About />} path="about" />
+        <Route element={<Profile />} path="profile" />
         <Route element={<Home />} path="" />
       </Routes>
     </main>

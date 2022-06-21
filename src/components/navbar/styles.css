@@ -1,7 +1,11 @@
 nav a {
   text-decoration: none;
-  color: #293a5c;
+  color: #16336b;
   font-weight: 600;
+}
+
+nav a.selected {
+  color: #405818;
 }
 
 @media (max-width: 1200px) {
@@ -88,7 +92,7 @@ nav a {
     justify-content: space-around;
   }
 
-  .drawer a img {
+  .drawer a svg {
     padding: 0 20px;
     width: 20%;
     height: 30px;
@@ -125,7 +129,7 @@ nav a {
     align-items: center;
   }
 
-  .navbar-desktop a img {
+  .navbar-desktop a svg {
     margin-right: 5px;
   }
 

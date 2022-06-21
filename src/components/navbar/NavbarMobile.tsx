@@ -11,10 +11,15 @@ type NavbarMobileProps = {
 
 type ListProps = NavbarMobileProps;
 
-const DrawerItem = ({ imgSrc, linkTo, text }: Item) => (
+const DrawerItem = ({ imgSrc, linkTo, text, selected }: Item) => (
   <>
-    <Link to={linkTo}>
-      <img src={imgSrc} alt="" /> <span>{text}</span>
+    <Link
+      to={linkTo}
+      className={cn({
+        selected,
+      })}
+    >
+      {imgSrc} <span>{text}</span>
     </Link>
   </>
 );
