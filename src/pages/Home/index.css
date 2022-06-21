@@ -1,0 +1,20 @@
+#home {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 25px;
+  padding: 30px;
+  box-shadow: 1.0431px 1.0431px 15.6466px rgba(0, 0, 0, 0.15);
+  border-radius: 9.38793px;
+  font-family: "Open Sans";
+  margin-bottom: 25px;
+}
+#home p {
+  width: 80vw;
+}
+
+@media (max-width: 1200px) {
+  #home-header {
+    display: none;
+  }
+}

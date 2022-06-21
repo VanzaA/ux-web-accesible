@@ -1,8 +1,9 @@
 import { Routes, Route } from "react-router-dom";
+import Footer from "./components/Footer/footer";
 import Navbar from "./components/navbar/Navbar";
+import Home from "./pages/Home/home";
 import IssuesList from "./pages/Issues/issues";
 
-const Home = () => <h1>Home</h1>;
 const Info = () => <h1>Info</h1>;
 const Submit = () => <h1>Submit</h1>;
 const About = () => <h1>About</h1>;
@@ -21,7 +22,7 @@ const App = () => (
         <Route element={<Home />} path="" />
       </Routes>
     </main>
-    <footer />
+    <Footer />
   </>
 );
 
