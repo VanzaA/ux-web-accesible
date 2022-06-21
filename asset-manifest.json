@@ -1,18 +1,15 @@
 {
   "files": {
-    "main.css": "/ux-web-accesible/static/css/main.5279c5be.css",
-    "main.js": "/ux-web-accesible/static/js/main.f0befdc9.js",
-    "static/media/hand.svg": "/ux-web-accesible/static/media/hand.98258d839c424adf3cb737e05de1dd4d.svg",
-    "static/media/user.svg": "/ux-web-accesible/static/media/user.cf94ac693716522a26fb0c1a73d2b71f.svg",
+    "main.css": "/ux-web-accesible/static/css/main.713e2b91.css",
+    "main.js": "/ux-web-accesible/static/js/main.0ff4193e.js",
     "static/media/burger-menu.svg": "/ux-web-accesible/static/media/burger-menu.4f13faa2dbebc0030492851eca09e010.svg",
     "index.html": "/ux-web-accesible/index.html",
-    "static/media/watch.svg": "/ux-web-accesible/static/media/watch.92645b69cdd7138ef61d36af6f94f489.svg",
     "static/media/close.svg": "/ux-web-accesible/static/media/close.f1ef6e7ef03c9a74760c0ba26f3ede4d.svg",
-    "main.5279c5be.css.map": "/ux-web-accesible/static/css/main.5279c5be.css.map",
-    "main.f0befdc9.js.map": "/ux-web-accesible/static/js/main.f0befdc9.js.map"
+    "main.713e2b91.css.map": "/ux-web-accesible/static/css/main.713e2b91.css.map",
+    "main.0ff4193e.js.map": "/ux-web-accesible/static/js/main.0ff4193e.js.map"
   },
   "entrypoints": [
-    "static/css/main.5279c5be.css",
-    "static/js/main.f0befdc9.js"
+    "static/css/main.713e2b91.css",
+    "static/js/main.0ff4193e.js"
   ]
 }
