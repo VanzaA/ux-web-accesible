@@ -10,6 +10,7 @@ type CommonItemAttributes = {
   text: string;
   linkTo: string;
   selected?: boolean;
+  alias: string[];
 };
 
 type NotMappedItem = {
@@ -30,18 +31,23 @@ const selectedSvgProps = {
 };
 
 const items: NotMappedItem[] = [
-  { imgSrc: Watch, text: "Inundaciones", linkTo: "/" },
-  { imgSrc: Hand, text: "Sobre Denuncias", linkTo: "/about" },
-  { imgSrc: Hand, text: "Informacion util", linkTo: "/info" },
-  { imgSrc: User, text: "Mi cuenta", linkTo: "/profile" },
+  { imgSrc: Watch, text: "Inundaciones", linkTo: "/", alias: ["/"] },
+  {
+    imgSrc: Hand,
+    text: "Sobre Denuncias",
+    linkTo: "/about",
+    alias: ["/about", "/list"],
+  },
+  { imgSrc: Hand, text: "Informacion util", linkTo: "/info", alias: ["/info"] },
+  { imgSrc: User, text: "Mi cuenta", linkTo: "/profile", alias: ["/profile"] },
 ];
 
 const Navbar = () => {
   const location = useLocation();
-  const actualRoute = location.pathname;
+  const actualRoute = location.pathname.toLowerCase();
 
   const navItems = items.map((item): Item => {
-    if (actualRoute === item.linkTo) {
+    if (item.alias.some((alias) => alias === actualRoute)) {
       return {
         ...item,
         imgSrc: item.imgSrc(selectedSvgProps),
