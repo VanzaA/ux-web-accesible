@@ -5,7 +5,11 @@ import App from "./App";
 import "./index.css";
 
 import "leaflet-css";
-import L from "leaflet";
+import L, { LatLngExpression } from "leaflet";
+
+export const CenterOfLaPlata: LatLngExpression = [
+  -34.921425585744785, -57.95408248901368,
+];
 
 L.Icon.Default.mergeOptions({
   iconRetinaUrl: require("leaflet/dist/images/marker-icon-2x.png"),

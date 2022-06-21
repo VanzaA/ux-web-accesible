@@ -110,6 +110,10 @@ nav a.selected {
   }
 }
 
+.hidden {
+  display: none;
+}
+
 @media (min-width: 1200px) {
   .navbar-mobile {
     display: none;

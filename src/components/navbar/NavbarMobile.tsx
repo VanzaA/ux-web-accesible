@@ -61,9 +61,14 @@ const Drawer = ({ open, children, className, onClose }: DrawerProps) => {
       }
     };
 
+    const buttonMap = document.querySelector(".leaflet-control-zoom");
     if (open) {
+      if (buttonMap) buttonMap.classList.add("hidden");
       window.addEventListener("keyup", onKeyPress);
+    } else {
+      if (buttonMap) buttonMap.classList.remove("hidden");
     }
+    console.log(buttonMap?.classList);
 
     return () => {
       window.removeEventListener("keyup", onKeyPress);
