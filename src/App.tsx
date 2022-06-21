@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/navbar/Navbar";
-import IssuesList from "./pages/issues";
+import IssuesList from "./pages/Issues/issues";
 
 const Home = () => <h1>Home</h1>;
 const Info = () => <h1>Info</h1>;

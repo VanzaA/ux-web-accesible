@@ -1,7 +1,8 @@
 import { LatLngExpression } from "leaflet";
+import { useEffect } from "react";
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
-import { CenterOfLaPlata } from "..";
-import "./issues.css";
+import { CenterOfLaPlata } from "../../index";
+import "./index.css";
 
 type MarkerInfo = {
   position: LatLngExpression;
@@ -28,9 +29,15 @@ const markers: MarkerInfo[] = [
 ];
 
 const IssuesList = () => {
+  const title = "Listado de denuncias";
+  useEffect(() => {
+    const header = document.querySelector("#mobile-header");
+    if (header) header.textContent = title;
+  }, []);
+
   return (
     <section id="issues-list">
-      <h1>Listado de denuncias</h1>
+      <h1 id="issues-list-header">{title}</h1>
       <MapContainer
         center={CenterOfLaPlata}
         zoom={15}
@@ -43,7 +50,7 @@ const IssuesList = () => {
         />
         {markers.map((marker) => (
           <Marker position={marker.position} key={`${marker.position}`}>
-            <Popup>
+            <Popup closeButton={false}>
               <h3>Informacion de la denuncia</h3>
               <span>{marker.TextInfo}</span>
             </Popup>

@@ -8,3 +8,9 @@
   border-radius: 9.38793px;
   font-family: "Open Sans";
 }
+
+@media (max-width: 1200px) {
+  #issues-list-header {
+    display: none;
+  }
+}

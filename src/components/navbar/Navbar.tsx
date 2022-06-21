@@ -31,7 +31,12 @@ const selectedSvgProps = {
 };
 
 const items: NotMappedItem[] = [
-  { imgSrc: Watch, text: "Inundaciones", linkTo: "/", alias: ["/"] },
+  {
+    imgSrc: Watch,
+    text: "Inundaciones",
+    linkTo: "/",
+    alias: ["/"],
+  },
   {
     imgSrc: Hand,
     text: "Sobre Denuncias",

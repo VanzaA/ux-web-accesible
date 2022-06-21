@@ -62,13 +62,15 @@ const Drawer = ({ open, children, className, onClose }: DrawerProps) => {
     };
 
     const buttonMap = document.querySelector(".leaflet-control-zoom");
+    const legendMap = document.querySelector(".leaflet-control-attribution");
     if (open) {
       if (buttonMap) buttonMap.classList.add("hidden");
+      if (legendMap) legendMap.classList.add("hidden");
       window.addEventListener("keyup", onKeyPress);
     } else {
       if (buttonMap) buttonMap.classList.remove("hidden");
+      if (legendMap) legendMap.classList.remove("hidden");
     }
-    console.log(buttonMap?.classList);
 
     return () => {
       window.removeEventListener("keyup", onKeyPress);
@@ -108,6 +110,7 @@ const NavbarMobile = ({ items }: NavbarMobileProps) => {
           <img src={Close} alt="Cerrar" />
         </button>
       </Drawer>
+      <h1 id="mobile-header">Header</h1>
     </nav>
   );
 };
