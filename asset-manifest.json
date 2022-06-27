@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/ux-web-accesible/static/css/main.da88ba5a.css",
-    "main.js": "/ux-web-accesible/static/js/main.72b17504.js",
+    "main.js": "/ux-web-accesible/static/js/main.f3e5743f.js",
     "static/media/burger-menu.svg": "/ux-web-accesible/static/media/burger-menu.4f13faa2dbebc0030492851eca09e010.svg",
     "index.html": "/ux-web-accesible/index.html",
     "static/media/footer.svg": "/ux-web-accesible/static/media/footer.ab61bc6dcc8aacb93724417d92e15bf8.svg",
     "static/media/close.svg": "/ux-web-accesible/static/media/close.f1ef6e7ef03c9a74760c0ba26f3ede4d.svg",
     "main.da88ba5a.css.map": "/ux-web-accesible/static/css/main.da88ba5a.css.map",
-    "main.72b17504.js.map": "/ux-web-accesible/static/js/main.72b17504.js.map"
+    "main.f3e5743f.js.map": "/ux-web-accesible/static/js/main.f3e5743f.js.map"
   },
   "entrypoints": [
     "static/css/main.da88ba5a.css",
-    "static/js/main.72b17504.js"
+    "static/js/main.f3e5743f.js"
   ]
 }
