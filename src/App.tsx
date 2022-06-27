@@ -6,8 +6,18 @@ import Info from "./pages/Info/info";
 import IssuesList from "./pages/Issues/issues";
 import IssuesInfo from "./pages/IssuesInfo/IssuesInfo";
 import IssueForm from "./pages/IssueForm/issueForm";
+import { useEffect } from "react";
 
-const Profile = () => <h1>My Profile</h1>;
+const Profile = () => {
+  const title = "Configuración";
+
+  useEffect(() => {
+    const header = document.querySelector("#mobile-header");
+    if (header) header.textContent = title;
+  }, []);
+
+  return <h1>{title}</h1>;
+};
 
 const App = () => (
   <>
