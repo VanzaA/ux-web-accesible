@@ -41,9 +41,9 @@ const items: NotMappedItem[] = [
     imgSrc: Hand,
     text: "Sobre Denuncias",
     linkTo: "/about",
-    alias: ["/about", "/list"],
+    alias: ["/about", "/list", "/submitIssue"],
   },
-  { imgSrc: Hand, text: "Informacion util", linkTo: "/info", alias: ["/info"] },
+  { imgSrc: Hand, text: "Información util", linkTo: "/info", alias: ["/info"] },
   { imgSrc: User, text: "Mi cuenta", linkTo: "/profile", alias: ["/profile"] },
 ];
 

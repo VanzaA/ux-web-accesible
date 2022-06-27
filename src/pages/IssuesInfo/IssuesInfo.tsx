@@ -23,7 +23,7 @@ const IssuesInfo = () => {
         mapa de la ciudad de La Plata y un pequeño texto con información.
       </p>
       <Button type="button">
-        <Link to="/createIssue">Hacer una denuncia</Link>
+        <Link to="/submitIssue">Hacer una denuncia</Link>
       </Button>
       <Button type="button">
         <Link to="/list">Ver listado de denuncias</Link>
