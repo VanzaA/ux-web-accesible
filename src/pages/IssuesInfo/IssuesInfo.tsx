@@ -14,17 +14,12 @@ const IssuesInfo = () => {
     <section id="issues-info">
       <h1 id="issues-info-header">{title}</h1>
       <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque id
-        leo congue, consectetur diam finibus, vestibulum augue. In hac habitasse
-        platea dictumst. Pellentesque habitant morbi tristique senectus et netus
-        et malesuada fames ac turpis egestas. Praesent ornare mollis diam.
-        Aenean quis suscipit lacus, at pellentesque nisi. Nullam diam nunc,
-        luctus nec enim quis, congue congue purus. Cras quis justo eget massa
-        facilisis viverra sit amet a massa. Sed varius dapibus risus vel
-        finibus. Etiam ut rhoncus ex. Fusce egestas felis in orci euismod
-        rutrum. Ut bibendum finibus porttitor. Vestibulum a ipsum mattis,
-        commodo massa sodales, volutpat risus. Quisque gravida massa a diam
-        pellentesque dapibus. Curabitur quis facilisis libero.
+        Mantenganse informado sobre los lugares donde se han hechos denuncias por posibles inundaciones
+        o puede hacer alguna si cree que hay alguna zona de posible inundacion y que otros usuarios puedan informarse.
+      </p>
+      <p>
+        Las denuncias revisadas y aceptadas, mostraran las coordenas en el mapa de la ciudad de La Plata y un pequeno texto
+        con informacion.
       </p>
       <Button type="button">
         <Link to="/createIssue">Hacer una denuncia</Link>
