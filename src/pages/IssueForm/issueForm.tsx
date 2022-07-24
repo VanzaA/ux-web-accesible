@@ -4,21 +4,41 @@ import { MapContainer, Marker, TileLayer, useMapEvent } from "react-leaflet";
 import { CenterOfLaPlata } from "../..";
 import Button from "../../components/Button/button";
 import Input from "../../components/Input/input";
+import Select, { Option } from "../../components/Select/select";
 import "./index.css";
-
-const generateOnChange =
-  (setInputValue: Dispatch<SetStateAction<string>>) =>
-  (event: React.ChangeEvent<HTMLInputElement>) => {
-    setInputValue(event.target.value);
-  };
 
 type SubmitFormData = {
   email: string;
   address: string;
   city: string;
-  description: string;
+  category: string;
+  description?: string;
   coordinates?: LatLngExpression;
 };
+
+const categoriesOptions: Option[] = [
+  {
+    text: "Alcantarillas tapadas",
+    value: "1",
+  },
+  {
+    text: "Arboles caídos",
+    value: "2",
+  },
+  {
+    text: "Basura estancada",
+    value: "3",
+  },
+  {
+    text: "Acumulación de hojas",
+    value: "4",
+  },
+];
+const generateOnChange =
+  (setInputValue: Dispatch<SetStateAction<string>>) =>
+  (event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    setInputValue(event.target.value);
+  };
 
 const onSubmit = (e: any, values: SubmitFormData) => {
   e.preventDefault();
@@ -27,7 +47,7 @@ const onSubmit = (e: any, values: SubmitFormData) => {
   if (!values.coordinates) {
     alert("Por favor seleccione una zona en el mapa");
   } else {
-    alert("Envio correctamente los datos");
+    alert("Envío correctamente los datos");
   }
 };
 
@@ -49,6 +69,7 @@ const IssueForm = () => {
   const [address, setAddress] = useState("");
   const [city, setCity] = useState("");
   const [description, setDescription] = useState("");
+  const [category, setCategory] = useState("");
   const [coordinates, setCoordinates] = useState<LatLngExpression | undefined>(
     undefined
   );
@@ -63,7 +84,14 @@ const IssueForm = () => {
       <h1 id="info-header">{title}</h1>
       <form
         onSubmit={(e) =>
-          onSubmit(e, { email, address, city, coordinates, description })
+          onSubmit(e, {
+            email,
+            address,
+            city,
+            coordinates,
+            description,
+            category,
+          })
         }
       >
         <Input
@@ -96,15 +124,24 @@ const IssueForm = () => {
           type="input"
           required={true}
         />
+        <Select
+          id="category"
+          label="Categoría"
+          name="category"
+          onChange={generateOnChange(setCategory)}
+          value={category}
+          placeholder="Seleccione categoría de la denuncia"
+          required={true}
+          options={categoriesOptions}
+        />
         <Input
           id="description"
-          label="Motivo"
+          label="Descripción"
           name="description"
           onChange={generateOnChange(setDescription)}
           value={description}
           placeholder="Describa su motivo de la denuncia..."
           type="input"
-          required={true}
         />
         <MapContainer
           center={CenterOfLaPlata}
