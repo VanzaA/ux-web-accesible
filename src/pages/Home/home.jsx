@@ -26,7 +26,7 @@ const Home = () => {
       <section>
         <h2>Inundación de La Plata - 2013</h2>
         <section>
-          <h4>¿Que sucedió?</h4>
+          <h3>¿Que sucedió?</h3>
           <p>
             La inundación de la ciudad de La Plata fue un evento meteorológico
             extremo que afectó al noroeste de la Provincia de Buenos Aires,
@@ -41,7 +41,7 @@ const Home = () => {
           </p>
         </section>
         <section>
-          <h4>Causas</h4>
+          <h3>Causas</h3>
           <p>
             La causa principal de las inundación fue la falta de obras de
             desagües. Como causas específicas se pueden observar:

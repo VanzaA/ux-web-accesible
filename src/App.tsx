@@ -27,12 +27,18 @@ const App = () => {
       style.innerHTML = `
         body {
           background-color: ${backgroundColor};
-          color: ${color}
+          color: ${color};
         }
 
-        p {
-          font-size: ${fontSize}
+        p, ul {
+          font-size: ${fontSize};
+          overflow-wrap: break-word;
         }
+
+        ul {
+          max-width: 80vw;
+        }
+
         `;
       body.appendChild(style);
     }
