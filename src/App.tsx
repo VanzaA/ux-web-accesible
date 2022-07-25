@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import Footer from "./components/Footer/footer";
 import Navbar from "./components/Navbar/Navbar";
@@ -6,34 +7,53 @@ import Info from "./pages/Info/info";
 import IssuesList from "./pages/Issues/issues";
 import IssuesInfo from "./pages/IssuesInfo/IssuesInfo";
 import IssueForm from "./pages/IssueForm/issueForm";
-import { useEffect } from "react";
+import Config, { ConfigStyles } from "./pages/Config/config";
 
-const Profile = () => {
-  const title = "Configuración";
-
+const App = () => {
   useEffect(() => {
-    const header = document.querySelector("#mobile-header");
-    if (header) header.textContent = title;
+    const localStorageConfig: ConfigStyles = JSON.parse(
+      localStorage.getItem("config") ?? "null"
+    );
+    const body = document.querySelector("body");
+    if (body) {
+      const fontSize = localStorageConfig?.fontSize ?? "medium";
+      const color = localStorageConfig?.fontColor ?? "black";
+      const backgroundColor =
+        localStorageConfig?.backgroundColor &&
+        localStorageConfig?.backgroundColor
+          ? localStorageConfig.backgroundColor
+          : "#f5f5f5";
+      var style = document.createElement("style");
+      style.innerHTML = `
+        body {
+          background-color: ${backgroundColor};
+          color: ${color}
+        }
+
+        p {
+          font-size: ${fontSize}
+        }
+        `;
+      body.appendChild(style);
+    }
   }, []);
 
-  return <h1>{title}</h1>;
+  return (
+    <>
+      <Navbar />
+      <main>
+        <Routes>
+          <Route element={<Info />} path="info" />
+          <Route element={<IssuesList />} path="list" />
+          <Route element={<IssueForm />} path="submitIssue" />
+          <Route element={<IssuesInfo />} path="about" />
+          <Route element={<Config />} path="profile" />
+          <Route element={<Home />} path="" />
+        </Routes>
+      </main>
+      <Footer />
+    </>
+  );
 };
-
-const App = () => (
-  <>
-    <Navbar />
-    <main>
-      <Routes>
-        <Route element={<Info />} path="info" />
-        <Route element={<IssuesList />} path="list" />
-        <Route element={<IssueForm />} path="submitIssue" />
-        <Route element={<IssuesInfo />} path="about" />
-        <Route element={<Profile />} path="profile" />
-        <Route element={<Home />} path="" />
-      </Routes>
-    </main>
-    <Footer />
-  </>
-);
 
 export default App;

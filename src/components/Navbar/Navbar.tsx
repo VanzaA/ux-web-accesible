@@ -44,7 +44,12 @@ const items: NotMappedItem[] = [
     alias: ["/about", "/list", "/submitIssue"],
   },
   { imgSrc: Hand, text: "Información util", linkTo: "/info", alias: ["/info"] },
-  { imgSrc: User, text: "Mi cuenta", linkTo: "/profile", alias: ["/profile"] },
+  {
+    imgSrc: User,
+    text: "Configuración",
+    linkTo: "/profile",
+    alias: ["/profile"],
+  },
 ];
 
 const Navbar = () => {
