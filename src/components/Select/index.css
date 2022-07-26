@@ -20,6 +20,6 @@ label {
 
 @media (max-width: 600px) {
   select {
-    width: 356px;
+    width: 300px;
   }
 }

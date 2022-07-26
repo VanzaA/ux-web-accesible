@@ -4,6 +4,7 @@ import NavbarMobile from "./NavbarMobile";
 import Hand from "../../assets/hand";
 import Watch from "../../assets/watch";
 import User from "../../assets/user";
+import Config from "../../assets/config";
 import "./styles.css";
 
 type CommonItemAttributes = {
@@ -45,10 +46,16 @@ const items: NotMappedItem[] = [
   },
   { imgSrc: Hand, text: "Información util", linkTo: "/info", alias: ["/info"] },
   {
-    imgSrc: User,
+    imgSrc: Config,
     text: "Configuración",
     linkTo: "/profile",
     alias: ["/profile"],
+  },
+  {
+    imgSrc: User,
+    text: "Administración",
+    linkTo: "/login",
+    alias: ["/login"],
   },
 ];
 

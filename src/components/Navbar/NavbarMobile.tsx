@@ -9,12 +9,23 @@ type NavbarMobileProps = {
   items: Item[];
 };
 
-type ListProps = NavbarMobileProps;
+type ListProps = { onClick: () => void } & NavbarMobileProps;
 
-const DrawerItem = ({ imgSrc, linkTo, text, selected }: Item) => (
+type DrawerItemProps = {
+  onClick: () => void;
+} & Item;
+
+const DrawerItem = ({
+  imgSrc,
+  linkTo,
+  text,
+  selected,
+  onClick,
+}: DrawerItemProps) => (
   <>
     <Link
       to={linkTo}
+      onClick={onClick}
       className={cn({
         selected,
       })}
@@ -24,10 +35,14 @@ const DrawerItem = ({ imgSrc, linkTo, text, selected }: Item) => (
   </>
 );
 
-const DrawerList = ({ items }: ListProps) => (
+const DrawerList = ({ items, onClick }: ListProps) => (
   <>
     {items.map((item) => (
-      <DrawerItem key={`drawer_item_${item.text}`} {...item} />
+      <DrawerItem
+        key={`drawer_item_${item.text}`}
+        {...item}
+        onClick={onClick}
+      />
     ))}
   </>
 );
@@ -105,7 +120,7 @@ const NavbarMobile = ({ items }: NavbarMobileProps) => {
         <img src={Menu} alt="Menu hamburguesa" />
       </button>
       <Drawer open={open} onClose={closeDrawer}>
-        <DrawerList items={items} />
+        <DrawerList items={items} onClick={closeDrawer} />
         <button type="button" onClick={closeDrawer}>
           <img src={Close} alt="Cerrar" />
         </button>

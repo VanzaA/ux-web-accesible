@@ -7,6 +7,7 @@ import Info from "./pages/Info/info";
 import IssuesList from "./pages/Issues/issues";
 import IssuesInfo from "./pages/IssuesInfo/IssuesInfo";
 import IssueForm from "./pages/IssueForm/issueForm";
+import Login from "./pages/Login/login";
 import Config, { ConfigStyles } from "./pages/Config/config";
 
 const App = () => {
@@ -54,6 +55,7 @@ const App = () => {
           <Route element={<IssueForm />} path="submitIssue" />
           <Route element={<IssuesInfo />} path="about" />
           <Route element={<Config />} path="profile" />
+          <Route element={<Login />} path="login" />
           <Route element={<Home />} path="" />
         </Routes>
       </main>
