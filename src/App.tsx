@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import Footer from "./components/Footer/footer";
 import Navbar from "./components/Navbar/Navbar";
 import Home from "./pages/Home/home";
@@ -9,6 +9,13 @@ import IssuesInfo from "./pages/IssuesInfo/IssuesInfo";
 import IssueForm from "./pages/IssueForm/issueForm";
 import Login from "./pages/Login/login";
 import Config, { ConfigStyles } from "./pages/Config/config";
+
+const Logout = () => {
+  localStorage.removeItem("session");
+  alert("Cerro sesión correctamente");
+
+  return <Navigate to="/" />;
+};
 
 const App = () => {
   useEffect(() => {
@@ -56,6 +63,7 @@ const App = () => {
           <Route element={<IssuesInfo />} path="about" />
           <Route element={<Config />} path="profile" />
           <Route element={<Login />} path="login" />
+          <Route element={<Logout />} path="logout" />
           <Route element={<Home />} path="" />
         </Routes>
       </main>

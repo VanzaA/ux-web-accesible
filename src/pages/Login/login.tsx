@@ -3,6 +3,7 @@ import Button from "../../components/Button/button";
 import Input from "../../components/Input/input";
 import Checkbox from "../../components/Checkbox/checkbox";
 import "./index.css";
+import { useNavigate } from "react-router-dom";
 
 const generateOnChange =
   (setInputValue: Dispatch<SetStateAction<string>>) =>
@@ -15,9 +16,33 @@ type SubmitFormData = {
   password: string;
 };
 
-const onSubmit = (e: any, values: SubmitFormData) => {
+const onSubmit = (
+  e: any,
+  values: SubmitFormData,
+  callback: (route: string) => void
+) => {
   e.preventDefault();
-  console.log("Valores del formulario: ", values);
+  fetch(process.env.REACT_APP_API + "/login", {
+    method: "post",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(values),
+  })
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
+      }
+      return Promise.reject(response);
+    })
+    .then(() => {
+      alert("Inicio sesión correctamente");
+      localStorage.setItem("session", JSON.stringify({ values }));
+      callback("/");
+    })
+    .catch(() => {
+      alert("Usuario o contraseña incorrecto.");
+    });
 };
 
 const Login = () => {
@@ -25,6 +50,7 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const header = document.querySelector("#mobile-header");
@@ -37,10 +63,14 @@ const Login = () => {
       <form
         className="login-form"
         onSubmit={(e) =>
-          onSubmit(e, {
-            email,
-            password,
-          })
+          onSubmit(
+            e,
+            {
+              email,
+              password,
+            },
+            navigate
+          )
         }
       >
         <Input

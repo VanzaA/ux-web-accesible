@@ -59,11 +59,29 @@ const items: NotMappedItem[] = [
   },
 ];
 
+const logout: NotMappedItem = {
+  imgSrc: User,
+  text: "Cerrar sesión",
+  linkTo: "/logout",
+  alias: ["/logout"],
+};
+
 const Navbar = () => {
   const location = useLocation();
   const actualRoute = location.pathname.toLowerCase();
 
-  const navItems = items.map((item): Item => {
+  const session = JSON.parse(localStorage.getItem("session") ?? "null");
+
+  let filterItems: NotMappedItem[] = [];
+
+  if (session) {
+    filterItems = items.filter((item) => item.linkTo !== "/login");
+    filterItems.push(logout);
+  } else {
+    filterItems = items;
+  }
+
+  const navItems = filterItems.map((item): Item => {
     if (item.alias.some((alias) => alias === actualRoute)) {
       return {
         ...item,
