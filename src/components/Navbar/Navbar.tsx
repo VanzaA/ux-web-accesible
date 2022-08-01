@@ -42,7 +42,7 @@ const items: NotMappedItem[] = [
     imgSrc: Hand,
     text: "Sobre Denuncias",
     linkTo: "/about",
-    alias: ["/about", "/list", "/submitIssue"],
+    alias: ["/about", "/list", "/submitissue"],
   },
   { imgSrc: Hand, text: "Información util", linkTo: "/info", alias: ["/info"] },
   {
@@ -51,37 +51,38 @@ const items: NotMappedItem[] = [
     linkTo: "/profile",
     alias: ["/profile"],
   },
-  {
-    imgSrc: User,
-    text: "Administración",
-    linkTo: "/login",
-    alias: ["/login"],
-  },
+  // {
+  //   imgSrc: User,
+  //   text: "Administración",
+  //   linkTo: "/login",
+  //   alias: ["/login"],
+  // },
 ];
 
-const logout: NotMappedItem = {
-  imgSrc: User,
-  text: "Cerrar sesión",
-  linkTo: "/logout",
-  alias: ["/logout"],
-};
+// const logout: NotMappedItem = {
+//   imgSrc: User,
+//   text: "Cerrar sesión",
+//   linkTo: "/logout",
+//   alias: ["/logout"],
+// };
 
 const Navbar = () => {
   const location = useLocation();
   const actualRoute = location.pathname.toLowerCase();
 
-  const session = JSON.parse(localStorage.getItem("session") ?? "null");
+  //const session = JSON.parse(localStorage.getItem("session") ?? "null");
 
-  let filterItems: NotMappedItem[] = [];
+  // let filterItems: NotMappedItem[] = [];
 
-  if (session) {
-    filterItems = items.filter((item) => item.linkTo !== "/login");
-    filterItems.push(logout);
-  } else {
-    filterItems = items;
-  }
+  // if (session) {
+  //   filterItems = items.filter((item) => item.linkTo !== "/login");
+  //   filterItems.push(logout);
+  // } else {
+  //   filterItems = items;
+  // }
 
-  const navItems = filterItems.map((item): Item => {
+  console.log(actualRoute);
+  const navItems = items.map((item): Item => {
     if (item.alias.some((alias) => alias === actualRoute)) {
       return {
         ...item,

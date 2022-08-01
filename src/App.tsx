@@ -62,8 +62,8 @@ const App = () => {
           <Route element={<IssueForm />} path="submitIssue" />
           <Route element={<IssuesInfo />} path="about" />
           <Route element={<Config />} path="profile" />
-          <Route element={<Login />} path="login" />
-          <Route element={<Logout />} path="logout" />
+          {/* <Route element={<Login />} path="login" />
+          <Route element={<Logout />} path="logout" /> */}
           <Route element={<Home />} path="" />
         </Routes>
       </main>

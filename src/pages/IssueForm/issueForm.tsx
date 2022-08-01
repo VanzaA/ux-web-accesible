@@ -1,6 +1,8 @@
-import { LatLngExpression } from "leaflet";
+import { LatLngExpression, LatLngLiteral } from "leaflet";
+import { json } from "node:stream/consumers";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { MapContainer, Marker, TileLayer, useMapEvent } from "react-leaflet";
+import { useNavigate } from "react-router-dom";
 import { CenterOfLaPlata } from "../..";
 import Button from "../../components/Button/button";
 import Input from "../../components/Input/input";
@@ -16,7 +18,7 @@ type SubmitFormData = {
   coordinates?: LatLngExpression;
 };
 
-const categoriesOptions: Option[] = [
+export const categoriesOptions: Option[] = [
   {
     text: "Alcantarillas tapadas",
     value: "1",
@@ -34,21 +36,57 @@ const categoriesOptions: Option[] = [
     value: "4",
   },
 ];
+
 const generateOnChange =
   (setInputValue: Dispatch<SetStateAction<string>>) =>
   (event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     setInputValue(event.target.value);
   };
 
-const onSubmit = (e: any, values: SubmitFormData) => {
+const onSubmit = (
+  e: any,
+  values: SubmitFormData,
+  callback: (route: string) => void
+) => {
   e.preventDefault();
   console.log("Valores del formulario: ", values);
 
   if (!values.coordinates) {
     alert("Por favor seleccione una zona en el mapa");
-  } else {
-    alert("Envío correctamente los datos");
+    return;
   }
+
+  const convertedCoordinates = values.coordinates as LatLngLiteral;
+  fetch(process.env.REACT_APP_API + "/issues", {
+    method: "post",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      issue: {
+        ...values,
+        coordinates: JSON.stringify([
+          convertedCoordinates.lat,
+          convertedCoordinates.lng,
+        ]),
+      },
+    }),
+  })
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
+      }
+      return Promise.reject(response);
+    })
+    .then(() => {
+      alert(
+        "Se creo la denuncia correctamente. Sera redireccionado al listado de denuncias"
+      );
+      callback("/list");
+    })
+    .catch(() => {
+      alert("Ocurrió un error, intente nuevamente");
+    });
 };
 
 const MapHandler = ({
@@ -73,6 +111,7 @@ const IssueForm = () => {
   const [coordinates, setCoordinates] = useState<LatLngExpression | undefined>(
     undefined
   );
+  const navigate = useNavigate();
 
   useEffect(() => {
     const header = document.querySelector("#mobile-header");
@@ -84,14 +123,18 @@ const IssueForm = () => {
       <h1 id="info-header">{title}</h1>
       <form
         onSubmit={(e) =>
-          onSubmit(e, {
-            email,
-            address,
-            city,
-            coordinates,
-            description,
-            category,
-          })
+          onSubmit(
+            e,
+            {
+              email,
+              address,
+              city,
+              coordinates,
+              description,
+              category,
+            },
+            navigate
+          )
         }
       >
         <Input
@@ -110,7 +153,7 @@ const IssueForm = () => {
           name="city"
           onChange={generateOnChange(setCity)}
           value={city}
-          placeholder="Email de contacto"
+          placeholder="Ciudad / Provincia"
           type="input"
           required={true}
         />
@@ -157,6 +200,11 @@ const IssueForm = () => {
           {coordinates && <Marker position={coordinates} />}
           <MapHandler setMapCoordinates={setCoordinates}></MapHandler>
         </MapContainer>
+        <strong>
+          <span>
+            Nota: Es necesario marcar en el mapa la ubicación de la denuncia
+          </span>
+        </strong>
         <Button type="submit">
           <span>Realizar denuncia</span>
         </Button>

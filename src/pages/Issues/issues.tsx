@@ -1,38 +1,69 @@
 import { LatLngExpression } from "leaflet";
-import { useEffect } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 import { CenterOfLaPlata } from "../../index";
+import { categoriesOptions } from "../IssueForm/issueForm";
 import "./index.css";
 
-type MarkerInfo = {
-  position: LatLngExpression;
-  TextInfo: string;
+type APIIssue = {
+  email: string;
+  address: string;
+  city: string;
+  category: string;
+  description: string;
+  coordinates: string;
 };
 
-const markers: MarkerInfo[] = [
-  {
-    TextInfo: "lorem impsum dolor sit amet, consectetur adipiscing",
-    position: [-34.93593258401855, -57.949705123901374],
-  },
-  {
-    TextInfo: "lorem impsum dolor sit amet, consectetur adipiscing",
-    position: [-34.921425585744785, -57.95279502868653],
-  },
-  {
-    TextInfo: "lorem impsum dolor sit amet, consectetur adipiscing",
-    position: [-34.91881968811382, -57.96635627746583],
-  },
-  {
-    TextInfo: "lorem impsum dolor sit amet, consectetur adipiscing",
-    position: [-34.9251582138739, -57.97021865844727],
-  },
-];
+type Issue = {
+  email: string;
+  address: string;
+  city: string;
+  category: string;
+  description: string;
+  coordinates: LatLngExpression;
+};
+
+const convertCategory = (value: string) =>
+  categoriesOptions.find((category) => category.value === value)?.text;
+
+const getIssues = (setIssues: Dispatch<SetStateAction<Issue[]>>) => {
+  fetch(process.env.REACT_APP_API + "/issues", {
+    method: "get",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
+      }
+      return Promise.reject(response);
+    })
+    .then((json: APIIssue[]) => {
+      const mappedResponse = json.map((issue) => {
+        console.log(issue.coordinates);
+        const parsedCoordinates = JSON.parse(issue.coordinates) as any;
+        return {
+          ...issue,
+          coordinates: { lat: parsedCoordinates[0], lng: parsedCoordinates[1] },
+        };
+      });
+      setIssues(mappedResponse);
+    })
+    .catch((err) => {
+      console.error(err);
+      alert("Error al obtener las denuncias.");
+    });
+};
 
 const IssuesList = () => {
   const title = "Listado de denuncias";
+  const [issues, setIssues] = useState<Issue[]>([]);
+
   useEffect(() => {
     const header = document.querySelector("#mobile-header");
     if (header) header.textContent = title;
+    getIssues(setIssues);
   }, []);
 
   return (
@@ -48,15 +79,23 @@ const IssuesList = () => {
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        {markers.map((marker) => (
-          <Marker position={marker.position} key={`${marker.position}`}>
+        {issues.map((issue) => (
+          <Marker position={issue.coordinates} key={`${issue.coordinates}`}>
             <Popup closeButton={false}>
-              <h3>Informacion de la denuncia</h3>
-              <span>{marker.TextInfo}</span>
+              <h3>Información de la denuncia</h3>
+              <span>Categoría: {convertCategory(issue.category)}</span>
+              <br />
+              <span>Descripción: {issue.description}</span>
             </Popup>
           </Marker>
         ))}
       </MapContainer>
+      <strong>
+        <span>
+          Nota: Al clickear en un marcador, se pueden ver detalles de las
+          denuncias
+        </span>
+      </strong>
     </section>
   );
 };
