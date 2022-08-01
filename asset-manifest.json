@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/ux-web-accesible/static/css/main.68d78339.css",
-    "main.js": "/ux-web-accesible/static/js/main.aa1008f0.js",
+    "main.css": "/ux-web-accesible/static/css/main.c59f6ac0.css",
+    "main.js": "/ux-web-accesible/static/js/main.da2b9b4c.js",
     "static/media/burger-menu.svg": "/ux-web-accesible/static/media/burger-menu.4f13faa2dbebc0030492851eca09e010.svg",
     "index.html": "/ux-web-accesible/index.html",
     "static/media/footer.svg": "/ux-web-accesible/static/media/footer.ab61bc6dcc8aacb93724417d92e15bf8.svg",
     "static/media/close.svg": "/ux-web-accesible/static/media/close.f1ef6e7ef03c9a74760c0ba26f3ede4d.svg",
-    "main.68d78339.css.map": "/ux-web-accesible/static/css/main.68d78339.css.map",
-    "main.aa1008f0.js.map": "/ux-web-accesible/static/js/main.aa1008f0.js.map"
+    "main.c59f6ac0.css.map": "/ux-web-accesible/static/css/main.c59f6ac0.css.map",
+    "main.da2b9b4c.js.map": "/ux-web-accesible/static/js/main.da2b9b4c.js.map"
   },
   "entrypoints": [
-    "static/css/main.68d78339.css",
-    "static/js/main.aa1008f0.js"
+    "static/css/main.c59f6ac0.css",
+    "static/js/main.da2b9b4c.js"
   ]
 }
